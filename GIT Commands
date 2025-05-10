@@ -6,3 +6,11 @@ git push origin main   (To push in main branch)
 
 #Git Pull : To Pull remote repo commit to local repo.
 git pull origin main   (To pull in main branch)
+
+# Git branch : to create branch in git
+git branch branch-name
+
+#Git branch merge : 
+
+git checkout main
+git merge branch_name
