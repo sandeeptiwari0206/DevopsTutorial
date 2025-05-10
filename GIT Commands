@@ -1,0 +1,8 @@
+#Git Clone : to clone all data of git hub in local repo.
+git clone (URL of git repo) 
+
+#Git Push : To push local repo commit to remote repo.
+git push origin main   (To push in main branch)
+
+#Git Pull : To Pull remote repo commit to local repo.
+git pull origin main   (To pull in main branch)
