@@ -1,0 +1,59 @@
+
+Docker Installation & Service Management
+------------------------------------------
+docker --version                         : Show installed Docker version.
+docker version                           : Display detailed Docker client and server version info.
+sudo apt install docker -y              : Install Docker using APT with auto confirmation.
+sudo apt install docker.io              : Install the Docker.io package from Ubuntu repo.
+sudo systemctl start docker             : Start the Docker daemon.
+sudo systemctl enable docker            : Enable Docker to start at boot.
+sudo systemctl status docker            : Check the status of the Docker service.
+sudo usermod -aG docker <username>      : Add a user to the Docker group to run Docker without sudo.
+newgrp docker                           : Refresh group membership in current session.
+
+Images
+---------
+docker pull nginx                       : Download the latest Nginx image from Docker Hub.
+docker images                           : List all local Docker images.
+
+Containers
+-------------
+docker run nginx:latest                 : Run a container from the latest Nginx image.
+docker run -p 8080:80 nginx:latest      : Run Nginx, exposing container port 80 to host port 8080.
+docker run -d -p 80:80 nginx:latest     : Run Nginx in detached mode, mapping port 80.
+docker run --name nginxApp -d -p 80:80 nginx:latest : Run and name the container as nginxApp.
+docker run -d -p 8080:80 -v www_html:/usr/share/nginx/html --name nginxapp nginx:latest : Run with volume mapping for persistent data.
+docker ps                               : Show running containers.
+docker ps -a                            : Show all containers (running + stopped).
+docker stop <container_id>              : Stop a running container.
+docker kill <container_id>              : Force stop a container.
+docker rm <container_id>                : Remove a stopped container.
+docker logs <container_id>              : View container logs.
+docker logs -f <container_id>           : Stream live container logs.
+docker exec -it <container_id> /bin/bash: Run interactive bash shell inside the container.
+
+Volumes
+----------
+docker volume create www_html           : Create a named volume for persistent data.
+docker volume ls                        : List all Docker volumes.
+cd /var/lib/docker/volumes/             : Navigate to Docker volume storage on host (for inspection).
+
+Networking
+-------------
+docker network create net_1             : Create a user-defined bridge network named net_1.
+docker network ls                       : List all Docker networks.
+docker network inspect net_1            : Inspect detailed info of a Docker network.
+docker run --rm --network net_1 busybox ping <target> : Test connectivity between containers using ping.
+docker exec -it <container> ping -c 4 <target> : Ping another container from within a container.
+
+Macvlan Networking
+---------------------
+docker network create -d macvlan --subnet=192.168.120.0/24 --gateway=192.168.120.1 -o parent=eth0 macvlan_net : Create a macvlan network with static IP support.
+docker run -d --name nginx_macvlan --network macvlan_net --ip 192.168.120.10 nginx : Run container with a specific IP on macvlan network.
+docker inspect nginx_macvlan           : Show detailed info about the container, including network.
+curl -I http://192.168.120.10          : Test the HTTP response header from the container IP.
+
+Cleanup
+----------
+docker system prune                     : Remove all unused containers, networks, images, and build cache.
+docker system prune -a                 : Remove all unused data including dangling and unused images.
