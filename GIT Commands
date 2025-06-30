@@ -69,13 +69,21 @@ git shortlog                         : Summarize commits by author.
 git config --list                    : Show all Git configurations.
 
 
+Addremote repo
 
-git push origin main
 ssh-keygen -t ed25519 -C "sandeeptiwari.infi@gmail.com"
 cat /home/sandeep/.ssh/id_ed25519
 eval "$(ssh-agent -s)"
 ssh-add ~/.ssh/id_ed25519
 cat /home/sandeep/.ssh/id_ed25519.pub
+paste in githubGo to https://github.com
+_______________________________________
+Click your profile picture > Settings
+Go to SSH and GPG Keys > New SSH Key
+Title: e.g., AlmaLinux Server
+Paste the key and save.
+________________________________________
+
 ssh -T git@github.com
 git push origin main
 git remote set-url origin git@github.com:sandeeptiwari0206/Devops-Project.git
