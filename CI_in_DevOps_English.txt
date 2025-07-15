@@ -1,0 +1,82 @@
+
+🚀 What is CI in DevOps?
+
+CI stands for Continuous Integration.
+
+It is a DevOps practice where developers frequently integrate code into a shared repository (GitHub, GitLab, Bitbucket), and every change is automatically tested and built.
+
+🎯 Goals of CI:
+
+- Catch errors early
+- Automate testing and builds
+- Improve team collaboration
+- Ensure consistent and working code
+
+🛠️ CI Process – Step by Step:
+
+1. 📄 Code Writing:
+   Developers write code on their local machines.
+
+2. 🔁 Code Push:
+   Code is committed and pushed to Git:
+   git add .
+   git commit -m "added feature"
+   git push origin feature-branch
+
+3. 🚀 CI Trigger:
+   Code push triggers the CI pipeline automatically.
+
+4. 📥 Code Checkout:
+   CI server fetches the latest code from the repository.
+
+5. ✅ Linting:
+   Code is scanned using linters (flake8, eslint, yamllint).
+
+6. 🧪 Unit Testing:
+   Automated test cases are executed (pytest, junit, mocha).
+
+7. 🔧 Build Step:
+   Application is compiled or built (npm build, mvn package, docker build).
+
+8. 📦 Artifact Creation:
+   If successful, it generates an artifact (e.g., .jar, .war, Docker image).
+
+9. 📩 Notification:
+   If any step fails, developers are notified via email/Slack.
+
+10. 🗃️ Push to Artifact Repo (Optional):
+    Artifacts can be pushed to DockerHub, Nexus, JFrog, etc.
+
+✅ Summary Flow:
+
+Developer → Push Code → CI Trigger → Lint → Test → Build → Notify
+
+📂 Example GitHub Actions CI YAML for Python:
+
+name: CI Pipeline
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.10'
+    - name: Install Dependencies
+      run: pip install -r requirements.txt
+    - name: Lint Code
+      run: flake8 .
+    - name: Run Tests
+      run: pytest
+
+🧰 Common CI Tools:
+
+- GitHub Actions
+- GitLab CI
+- Jenkins
+- CircleCI
+- Travis CI

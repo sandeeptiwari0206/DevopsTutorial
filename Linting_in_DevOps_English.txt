@@ -1,0 +1,67 @@
+
+🔧 What is Linting in DevOps?
+
+Linting is the process of analyzing source code for errors, bugs, stylistic issues, or deviations from coding standards—without running the code. It uses automated tools called "linters".
+
+🎯 Why is Linting Important in DevOps?
+
+In DevOps, code is integrated and deployed frequently. Poor-quality code can break builds or cause issues in production. Linting ensures:
+- Early detection of issues
+- Consistent code quality
+- Fewer bugs in production
+- Cleaner, maintainable code
+
+🛠️ Examples of Linter Tools by Language:
+
+| Language        | Linter Tool       |
+|-----------------|-------------------|
+| Python          | pylint, flake8     |
+| JavaScript      | eslint             |
+| YAML            | yamllint           |
+| Bash            | shellcheck         |
+| Dockerfile      | hadolint           |
+
+👨‍💻 Example:
+
+Python code with an error:
+def add(x, y):
+  return x +  y
+
+This code has an extra space. A linter like flake8 will detect this and warn:
+"Extra space detected"
+
+🔁 How Linting Works in a CI/CD Pipeline:
+
+1. Developer writes code
+2. Code is pushed to a Git repository
+3. CI/CD pipeline triggers automatically
+4. Linter runs first to check code quality
+5. If issues are found, the pipeline fails and developers fix them
+6. If no issues, pipeline continues with testing and build
+
+✅ Benefits:
+
+- Catch issues early
+- Standardized codebase
+- Faster debugging and troubleshooting
+- Improved code readability and maintainability
+
+📂 Example GitHub Actions YAML:
+
+name: Linting Pipeline
+
+on: [push]
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.10'
+    - name: Install flake8
+      run: pip install flake8
+    - name: Run linter
+      run: flake8 .
