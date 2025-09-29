@@ -57,3 +57,21 @@ Cleanup
 ----------
 docker system prune                     : Remove all unused containers, networks, images, and build cache.
 docker system prune -a                 : Remove all unused data including dangling and unused images.
+
+
+Docker Image Commands
+-------------------------
+docker pull nginx                       : Download the latest Nginx image from Docker Hub.
+docker pull ubuntu:20.04                : Download a specific version of Ubuntu image.
+docker images                           : List all local Docker images.
+docker rmi <image_id>                   : Remove a Docker image by ID.
+docker rmi -f <image_id>                : Force remove a Docker image.
+docker tag <image_id> myapp:1.0         : Tag an image with a new name/version.
+docker build -t myapp:1.0 .             : Build an image from a Dockerfile in the current directory.
+docker build -f Dockerfile.dev -t myapp:dev . : Build an image using a custom Dockerfile.
+docker save -o myapp.tar myapp:1.0      : Save an image to a tar archive file.
+docker load -i myapp.tar                : Load an image from a tar archive file.
+docker inspect <image_id>               : View detailed info about an image.
+docker history <image_id>               : Show the history of an image’s layers.
+docker prune images                     : Remove unused (dangling) images.
+docker search redis                     : Search Docker Hub for Redis images.
